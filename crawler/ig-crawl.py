@@ -17,7 +17,8 @@ def gather():
 	theUrl = 'https://www.instagram.com/explore/tags/'
 	myurl ='https://www.pro-football-reference.com/'
 	player = 'players/A/AndeJu00.htm'
-	tag = 'bears'
+	# tag = 'bears'
+	tag = 'obobobobo'
 
 	tagUrl = theUrl +tag
 	purl = myurl+player
@@ -25,7 +26,7 @@ def gather():
 	browser = webdriver.Chrome('chromedriver.exe')
 
 	# get the html
-	browser.get(purl)
+	browser.get(tagUrl)
 	source = browser.page_source
 	pretty = bsoup(source, 'html.parser')
 	body = pretty.find('body')
