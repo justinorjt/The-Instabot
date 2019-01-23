@@ -1,5 +1,6 @@
 import csv
 import time
+import random
 import requests
 import urllib.request
 from urllib.request import urlopen
@@ -15,41 +16,39 @@ from selenium import webdriver
 def gather():
 
 	theUrl = 'https://www.instagram.com/explore/tags/'
-	myurl ='https://www.pro-football-reference.com/'
-	player = 'players/A/AndeJu00.htm'
-	# tag = 'bears'
-	tag = 'obobobobo'
+	basicIG = 'https://www.instagram.com'
+	# tag = '5454jt54'
+	tag = 'lockeddddd'
 
 	tagUrl = theUrl +tag
-	purl = myurl+player
-	# driver = webdriver.PhantomJS()
 	browser = webdriver.Chrome('chromedriver.exe')
+	pictureLinks=[]
 
-	# get the html
+	# get the html and the link
 	browser.get(tagUrl)
 	source = browser.page_source
 	pretty = bsoup(source, 'html.parser')
 	body = pretty.find('body')
-	# script_tag = body.find('script')
-	# raw_string = script_tag.text.strip().replace('window._sharedData =', '').replace(';', '')
-	# print(json.loads(raw_string))
+	# FIND EVERY POST IN THE BODY
+	post = body.findAll('div',{'class':'_bz0w'})
+	# GET THE LINK TO EVERY POST AND ADD IT TO ARRAY
+	for theLink in post:
+		href = theLink.find('a').get('href')
+		Link = basicIG+href
+		pictureLinks.append(Link)
 
-	print(pretty)
+	print(pictureLinks)
+
+
 	# CLOSE THE SCRAPING BROWSER
 	browser.quit()
-	pagetitle = pretty.title.get_text()
-	print('THIS IS THE PAGE title',pagetitle)
+	
+# def selectRandomPictures():
 
-	# print('SEPARATE  ---->  ',pretty.section.main.div.div.div.div)
 
-	#Diving in
-	# picLinks = []
-	# for elem in pretty.find_element_by_class_name('_bz0w'):
-	# 	picLinks.append(elem)
 
-	# sample = pretty.find_element_by_class_name('_bz0w')
-	# # print(sample.get_attribute('href'))
-	# # print(picLinks)
-	# print((sample.text), 'is my sample')
+
+
 
 gather()
+
