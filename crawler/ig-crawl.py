@@ -13,7 +13,7 @@ from pandas.io.html import read_html
 #downloaded to deal with js loaded html. May have to look it up
 from selenium import webdriver
 
-def gather():
+def gatherPics():
 
 	theUrl = 'https://www.instagram.com/explore/tags/'
 	basicIG = 'https://www.instagram.com'
@@ -28,7 +28,6 @@ def gather():
 	# get the html and the link
 	browser.get(tagUrl)
 	source = browser.page_source
-	# browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 	pretty = bsoup(source, 'html.parser')
 	body = pretty.find('body')
 	# FIND EVERY POST IN THE BODY
@@ -39,18 +38,16 @@ def gather():
 		Link = basicIG+href
 		pictureLinks.append(Link)
 
-	print((pictureLinks))
-
-
 	# CLOSE THE SCRAPING BROWSER
 	browser.quit()
 
-# something = [1,2,3,4,5,6,7,8,9]
-# other=[]
-# other.extend(range(1, 100))
+	PRINT AND RETURN THE RESULTS
+	print((pictureLinks))
+	return pictureLinks
+
 def selectRandomPictures(anArray):
 	i =[]
-	i.extend(range(1,9))
+	i.extend(range(1,7))
 	start = random.choice(i)
 	theGist=[]
 	nex = start
@@ -63,5 +60,5 @@ def selectRandomPictures(anArray):
 
 # selectRandomPictures(other)
 
-gather()
+gatherPics()
 
