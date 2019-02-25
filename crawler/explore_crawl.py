@@ -1,9 +1,6 @@
-import csv
 import time
 import random
 import requests
-import urllib.request
-from urllib.request import urlopen
 import numpy as np
 from html.parser import HTMLParser
 import pandas as pd
@@ -17,9 +14,7 @@ def gatherPics():
 
 	theUrl = 'https://www.instagram.com/explore/tags/'
 	basicIG = 'https://www.instagram.com'
-	# tag = '5454jt54'
 	tag = 'lockeddddd'
-	# tag = 'lokkedin'
 
 	tagUrl = theUrl +tag
 	browser = webdriver.Chrome('chromedriver.exe')
@@ -41,13 +36,13 @@ def gatherPics():
 	# CLOSE THE SCRAPING BROWSER
 	browser.quit()
 
-	PRINT AND RETURN THE RESULTS
-	print((pictureLinks))
+	# PRINT AND RETURN THE RESULTS
+	# print((pictureLinks))
 	return pictureLinks
 
 def selectRandomPictures(anArray):
 	i =[]
-	i.extend(range(1,7))
+	i.extend(range(0,7))
 	start = random.choice(i)
 	theGist=[]
 	nex = start
@@ -57,8 +52,6 @@ def selectRandomPictures(anArray):
 		nex += random.choice(i)
 
 	return (theGist)
-
-# selectRandomPictures(other)
 
 gatherPics()
 
